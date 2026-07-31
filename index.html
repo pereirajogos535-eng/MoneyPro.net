@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MoneyPro - Plataforma de Investimento</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo">
+      <div class="logo-icon">M</div>
+      <div class="logo-text">Money<span>Pro</span></div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" title="Notificações">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+      </button>
+      <button class="header-btn" title="Idioma">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== TAB 1: INÍCIO ===== -->
+  <div class="tab-content active" id="tab-inicio">
+    
+    <!-- Balance Card -->
+    <div class="balance-card">
+      <div class="balance-label">Saldo Total</div>
+      <div class="balance-amount">AOA 0.00</div>
+      <div class="balance-stats">
+        <div class="stat-item">
+          <div class="stat-label">Mineradores Ativos</div>
+          <div class="stat-value">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Rendimento Hoje</div>
+          <div class="stat-value">+AOA 0</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Active Banner -->
+    <div class="active-banner">
+      <div class="active-banner-left">
+        <div class="active-dot"></div>
+        <div class="active-banner-text">0 máquinas ativas</div>
+      </div>
+      <button class="active-banner-btn" onclick="switchTab('tab-investimentos')">Gerir</button>
+    </div>
+
+    <!-- Daily Chart Demo -->
+    <div class="daily-chart-section">
+      <div class="daily-chart-card">
+        <div class="daily-chart-header">
+          <div>
+            <div class="daily-chart-title">Gráfico do Mercado Hoje</div>
+            <div class="daily-chart-value">+2.34% hoje</div>
+          </div>
+          <button class="section-link" onclick="switchTab('tab-grafico')">Ver tudo →</button>
+        </div>
+        <div class="daily-chart-canvas">
+          <canvas id="dailyChart"></canvas>
+        </div>
+        <div class="daily-chart-stats">
+          <div class="daily-stat">
+            <div class="daily-stat-value">AOA 67,432</div>
+            <div class="daily-stat-label">BTC</div>
+          </div>
+          <div class="daily-stat">
+            <div class="daily-stat-value">AOA 3,521</div>
+            <div class="daily-stat-label">ETH</div>
+          </div>
+          <div class="daily-stat">
+            <div class="daily-stat-value">AOA 612</div>
+            <div class="daily-stat-label">BNB</div>
+          </div>
+          <div class="daily-stat">
+            <div class="daily-stat-value">AOA 178</div>
+            <div class="daily-stat-label">SOL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market Overview -->
+    <div class="market-section">
+      <div class="section-header">
+        <div class="section-title">Mercado Cripto</div>
+        <button class="section-link" onclick="switchTab('tab-mercado')">Ver tudo →</button>
+      </div>
+      
+      <div class="market-card">
+        <div class="market-card-header">
+          <div class="market-coin">
+            <div class="coin-icon coin-btc"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h9"></path><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path><path d="M6 6h2"></path><path d="M6 18h2"></path></svg></div>
+            <div>
+              <div class="coin-name">Bitcoin</div>
+              <div class="coin-symbol">BTC/USDT</div>
+            </div>
+          </div>
+          <div class="coin-price">
+            <div class="coin-current" id="price-BTC">AOA 62,037,900</div>
+            <div class="coin-change positive">+2.34%</div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart-BTC"></canvas>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-card-header">
+          <div class="market-coin">
+            <div class="coin-icon coin-eth"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 7 10-7 10-7-10z"></path><path d="M12 22v-10l7-10"></path><path d="m12 12-7-10"></path></svg></div>
+            <div>
+              <div class="coin-name">Ethereum</div>
+              <div class="coin-symbol">ETH/USDT</div>
+            </div>
+          </div>
+          <div class="coin-price">
+            <div class="coin-current" id="price-ETH">AOA 3,239,856</div>
+            <div class="coin-change positive">+1.87%</div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart-ETH"></canvas>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-card-header">
+          <div class="market-coin">
+            <div class="coin-icon coin-bnb"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 10-10 10L2 12z"></path></svg></div>
+            <div>
+              <div class="coin-name">BNB</div>
+              <div class="coin-symbol">BNB/USDT</div>
+            </div>
+          </div>
+          <div class="coin-price">
+            <div class="coin-current" id="price-BNB">AOA 563,454</div>
+            <div class="coin-change negative">-0.56%</div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart-BNB"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 2: INVESTIMENTOS ===== -->
+  <div class="tab-content" id="tab-investimentos">
+    
+    <div class="balance-card" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);">
+      <div class="balance-label">Investimentos Ativos</div>
+      <div class="balance-amount">AOA 0.00</div>
+      <div class="balance-stats">
+        <div class="stat-item">
+          <div class="stat-label">Rendimento Diário</div>
+          <div class="stat-value">+AOA 0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Próximo Pagamento</div>
+          <div class="stat-value">--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Tabs -->
+    <div class="page-tabs" style="grid-template-columns: 1fr 1fr 1fr;">
+      <button class="page-tab active" data-page="diario" onclick="switchInvestmentPage('diario')">Diário</button>
+      <button class="page-tab" data-page="semanal" onclick="switchInvestmentPage('semanal')">Semanal</button>
+      <button class="page-tab" data-page="mensal" onclick="switchInvestmentPage('mensal')">Fundo Mensal</button>
+    </div>
+
+    <!-- Investment Grid -->
+    <div class="section-header">
+      <div class="section-title" id="pageTitle">Planos de Rendimento Diário</div>
+    </div>
+
+    <div class="invest-grid" id="investments-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Investment Info -->
+    <div style="padding: 20px 16px;">
+      <div class="vip-card">
+        <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--accent-gold); display: flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Sistema de Níveis VIP
+        </h4>
+        <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+          Cada plano de investimento requer um nível VIP específico. O seu nível aumenta conforme o valor total investido na plataforma. Invesir em planos de nível mais alto desbloqueia rendimentos superiores e planos exclusivos.
+        </p>
+        <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div style="background: var(--bg-sidebar); border-radius: 8px; padding: 10px; text-align: center;">
+            <div style="font-size: 11px; color: var(--text-secondary);">Atual</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--primary);">VIP 0</div>
+          </div>
+          <div style="background: var(--bg-sidebar); border-radius: 8px; padding: 10px; text-align: center;">
+            <div style="font-size: 11px; color: var(--text-secondary);">Próximo</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--accent-gold);">VIP 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 3: EQUIPA ===== -->
+  <div class="tab-content" id="tab-equipa">
+    
+    <div class="team-card" style="margin-top: 16px; text-align: center;">
+      <div class="team-stats">
+        <div class="team-stat">
+          <div class="team-stat-value">0</div>
+          <div class="team-stat-label">Membros</div>
+        </div>
+        <div class="team-stat">
+          <div class="team-stat-value">AOA 0</div>
+          <div class="team-stat-label">Comissão</div>
+        </div>
+        <div class="team-stat">
+          <div class="team-stat-value">0</div>
+          <div class="team-stat-label">Nível</div>
+        </div>
+      </div>
+      <div class="referral-code">
+        <div class="referral-code-text">Código: MP-0000-ANG</div>
+        <button class="copy-btn" onclick="copyReferral()">Copiar</button>
+      </div>
+    </div>
+
+    <!-- Team Members -->
+    <div class="section-header">
+      <div class="section-title">Membros da Equipa</div>
+    </div>
+
+    <div style="padding: 20px 16px; text-align: center; color: var(--text-muted);">
+      <p style="font-size: 14px;">Ainda não tem membros na sua equipa.</p>
+    </div>
+  </div>
+
+  <!-- ===== TAB 4: MERCADO ===== -->
+  <div class="tab-content" id="tab-mercado">
+    
+    <div class="market-full-section">
+      <div class="section-header" style="padding: 0; margin-bottom: 16px;">
+        <div class="section-title">Mercado em Tempo Real</div>
+        <button class="section-link" onclick="switchTab('tab-grafico')">Gráfico →</button>
+      </div>
+
+      <!-- Market Indicators -->
+      <div class="market-indicators">
+        <div class="indicator-chip active">Top 6</div>
+        <div class="indicator-chip">Bitcoin</div>
+        <div class="indicator-chip">Altcoins</div>
+        <div class="indicator-chip">DeFi</div>
+        <div class="indicator-chip">NFT</div>
+      </div>
+
+      <!-- Market Table -->
+      <div class="market-table">
+        <div class="market-table-row">
+          <div class="market-table-left">
+            <div class="coin-icon coin-btc" style="width: 32px; height: 32px; font-size: 12px;">₿</div>
+            <div class="market-table-info">
+              <h4>Bitcoin</h4>
+              <p>BTC</p>
+            </div>
+          </div>
+          <div class="market-table-right">
+            <div class="market-table-price" id="price-BTC">AOA 62,037,900</div>
+            <div class="market-table-change" style="color: var(--success);">+2.34%</div>
+          </div>
+        </div>
+
+        <div class="market-table-row">
+          <div class="market-table-left">
+            <div class="coin-icon coin-eth" style="width: 32px; height: 32px; font-size: 12px;">Ξ</div>
+            <div class="market-table-info">
+              <h4>Ethereum</h4>
+              <p>ETH</p>
+            </div>
+          </div>
+          <div class="market-table-right">
+            <div class="market-table-price" id="price-ETH">AOA 3,239,856</div>
+            <div class="market-table-change" style="color: var(--success);">+1.87%</div>
+          </div>
+        </div>
+
+        <div class="market-table-row">
+          <div class="market-table-left">
+            <div class="coin-icon coin-bnb" style="width: 32px; height: 32px; font-size: 12px;">◆</div>
+            <div class="market-table-info">
+              <h4>BNB</h4>
+              <p>BNB</p>
+            </div>
+          </div>
+          <div class="market-table-right">
+            <div class="market-table-price" id="price-BNB">AOA 563,454</div>
+            <div class="market-table-change" style="color: var(--accent-red);">-0.56%</div>
+          </div>
+        </div>
+
+        <div class="market-table-row">
+          <div class="market-table-left">
+            <div class="coin-icon coin-sol" style="width: 32px; height: 32px; font-size: 12px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path></svg></div>
+            <div class="market-table-info">
+              <h4>Solana</h4>
+              <p>SOL</p>
+            </div>
+          </div>
+          <div class="market-table-right">
+            <div class="market-table-price" id="price-SOL">AOA 164,607</div>
+            <div class="market-table-change" style="color: var(--success);">+4.21%</div>
+          </div>
+        </div>
+
+        <div class="market-table-row">
+          <div class="market-table-left">
+            <div class="coin-icon coin-ada" style="width: 32px; height: 32px; font-size: 12px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M2 12h20"></path></svg></div>
+            <div class="market-table-info">
+              <h4>Cardano</h4>
+              <p>ADA</p>
+            </div>
+          </div>
+          <div class="market-table-right">
+            <div class="market-table-price" id="price-ADA">AOA 416.12</div>
+            <div class="market-table-change" style="color: var(--accent-red);">-1.12%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 5: GRÁFICO ===== -->
+  <div class="tab-content" id="tab-grafico">
+    <div class="full-chart-section">
+      <div class="full-chart-header">
+        <div class="full-chart-coin">
+          <div class="coin-icon coin-btc" style="width: 40px; height: 40px;">₿</div>
+          <div>
+            <div class="full-chart-title">BTC/USDT</div>
+            <div class="full-chart-price" id="price-BTC-chart">AOA 62,037,900</div>
+          </div>
+        </div>
+        <div class="full-chart-change positive">+2.34%</div>
+      </div>
+      
+      <div class="timeframe-selector">
+        <button class="timeframe-btn" onclick="switchTimeframe(this)">1H</button>
+        <button class="timeframe-btn active" onclick="switchTimeframe(this)">4H</button>
+        <button class="timeframe-btn" onclick="switchTimeframe(this)">1D</button>
+        <button class="timeframe-btn" onclick="switchTimeframe(this)">1W</button>
+        <button class="timeframe-btn" onclick="switchTimeframe(this)">1M</button>
+      </div>
+
+      <div class="full-chart-container">
+        <canvas id="fullChart"></canvas>
+      </div>
+
+      <div class="chart-actions">
+        <button class="chart-btn buy" onclick="switchTab('tab-investimentos')">Investir</button>
+        <button class="chart-btn sell" onclick="openWithdraw()">Retirar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 6: PERFIL ===== -->
+  <div class="tab-content" id="tab-perfil">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">Utilizador MoneyPro</div>
+        <div class="profile-id">ID: 8849201</div>
+        <div class="profile-vip-badge">VIP 0</div>
+      </div>
+    </div>
+
+    <div class="profile-wallet-card">
+      <div class="wallet-balance">
+        <div class="wallet-label">Ativos totais</div>
+        <div class="wallet-amount">AOA 0.00</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+        <div style="background: rgba(0, 200, 150, 0.1); border-radius: 8px; padding: 12px; text-align: center;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Carteira de depósito</div>
+          <div style="font-size: 16px; font-weight: 600; color: var(--success);">AOA 0,00</div>
+        </div>
+        <div style="background: rgba(34, 197, 233, 0.1); border-radius: 8px; padding: 12px; text-align: center;">
+          <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Carteira de retirada</div>
+          <div style="font-size: 16px; font-weight: 600; color: #22C5E9;">AOA 0,00</div>
+        </div>
+      </div>
+      <div class="wallet-actions" style="margin-top: 16px;">
+        <button class="wallet-btn deposit" onclick="openDeposit()">Depósito</button>
+        <button class="wallet-btn withdraw" onclick="openWithdraw()">Retirar</button>
+      </div>
+    </div>
+
+    <!-- VIP Progress Section -->
+    <div style="padding: 20px 16px;">
+      <div style="background: var(--bg-sidebar); border-radius: 16px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div style="font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 0.5px;">Nível VIP</div>
+          <div style="font-size: 12px; color: var(--text-secondary);" id="vipProgressText">Investimento necessário <strong>0</strong> / 5.000</div>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <div id="currentVipBadge" style="width: 36px; height: 36px; background: #3B82F6; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);">0</div>
+          
+          <div style="flex: 1; height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; position: relative;">
+            <div id="vipProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #3B82F6, #60A5FA); border-radius: 5px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); position: relative;">
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: shine 2s infinite;"></div>
+            </div>
+          </div>
+          
+          <div id="nextVipBadge" style="width: 36px; height: 36px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: rgba(255, 255, 255, 0.3);">1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Buttons -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; margin-bottom: 20px;">
+      <button onclick="openProfileOption('Meus Pedidos')" style="background: var(--bg-sidebar); border: none; border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff; font-weight: 500;">
+        <span style="font-size: 20px;">📦</span> Meus Pedidos
+      </button>
+      <button onclick="switchTab('tab-equipa')" style="background: var(--bg-sidebar); border: none; border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff; font-weight: 500;">
+        <span style="font-size: 20px;">👥</span> Minha Equipe
+      </button>
+    </div>
+
+    <div class="profile-menu">
+      <div class="menu-item" onclick="openProfileOption('Meus Pedidos')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
+          <span>Meus Pedidos</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Registo da carteira')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
+          <span>Registo da carteira</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Informações Pessoais')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+          <span>Informações Pessoais</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Senha de Login')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+          <span>Senha de Login</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Senha de Retirada')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+          <span>Senha de Retirada</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Configurações')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <span>Configurações</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Suporte Online')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+          <span>Suporte Online</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+      <div class="menu-item" onclick="openProfileOption('Sobre Nós')">
+        <div class="menu-item-left">
+          <div class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
+          <span>Sobre Nós</span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-tab="tab-inicio" onclick="switchTab('tab-inicio')">
+      <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+      <span>Início</span>
+    </div>
+    <div class="nav-item" data-tab="tab-investimentos" onclick="switchTab('tab-investimentos')">
+      <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+      <span>Investir</span>
+    </div>
+    <div class="nav-item" data-tab="tab-equipa" onclick="switchTab('tab-equipa')">
+      <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+      <span>Equipa</span>
+    </div>
+    <div class="nav-item" data-tab="tab-mercado" onclick="switchTab('tab-mercado')">
+      <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg></div>
+      <span>Mercado</span>
+    </div>
+    <div class="nav-item" data-tab="tab-perfil" onclick="switchTab('tab-perfil')">
+      <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+      <span>Perfil</span>
+    </div>
+  </nav>
+
+  <!-- ===== TAB 7: DEPÓSITO ===== -->
+  <div class="tab-content" id="tab-deposito">
+    <div class="deposit-header">
+      <button class="back-btn" onclick="switchTab('tab-perfil')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </button>
+      <h2>Depositar Kwanzas</h2>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <div class="deposit-body">
+      <div class="amount-selection">
+        <p class="section-label">SELECIONE O MONTANTE</p>
+        <div class="amount-carousel">
+          <button class="carousel-nav" onclick="changeAmount(-1)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="amount-display">
+            <span id="selectedAmount">5.000</span>
+            <span class="currency">Kz</span>
+          </div>
+          <button class="carousel-nav" onclick="changeAmount(1)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <div class="carousel-dots" id="carouselDots">
+          <!-- Dots will be generated by JS -->
+        </div>
+      </div>
+
+      <div class="payment-card">
+        <div class="payment-card-header">
+          <span>MULTICAIXA EXPRESS</span>
+          <span class="mcx-logo">MCX</span>
+        </div>
+        <div class="payment-details">
+          <div class="detail-row">
+            <span class="detail-label">Entidade</span>
+            <div class="detail-value">
+              <span id="entityValue">10116</span>
+              <button class="copy-icon-btn" onclick="copyText('10116')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Referência</span>
+            <div class="detail-value">
+              <span id="referenceValue">950919355</span>
+              <button class="copy-icon-btn" onclick="copyText('950919355')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">A Transferir</span>
+            <div class="detail-value bold">
+              <span id="transferAmount">5.000</span> Kz
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-section" onclick="document.getElementById('receiptUpload').click()">
+        <input type="file" id="receiptUpload" hidden accept="image/*,application/pdf" onchange="handleFileUpload(this)">
+        <div class="upload-box">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          </div>
+          <div class="upload-text">
+            <h4>Anexar Comprovativo</h4>
+            <p id="uploadStatus">Toque para selecionar imagem/pdf</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="confirm-btn" onclick="confirmDeposit()">
+        Confirmar Envio
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+
+      <div class="recent-movements">
+        <p class="section-label">Movimentos Recentes</p>
+        <div class="empty-state">
+          Nenhum registo encontrado
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 8: SAQUE ===== -->
+  <div class="tab-content" id="tab-saque">
+    <div class="withdraw-header">
+      <button class="back-btn" onclick="switchTab('tab-perfil')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </button>
+      <h2>Levantamentos</h2>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <div class="withdraw-body">
+      <div class="withdraw-summary">
+        <p class="summary-label">Disponível para Levantamento</p>
+        <h3 class="summary-value"><span class="balance-amount">0,00</span> Kz</h3>
+      </div>
+
+      <div class="withdraw-status-bar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>Saques abertos até às 18:00</span>
+      </div>
+
+      <div class="withdraw-section">
+        <h4 class="section-number-title">1. CONTA DE DESTINO</h4>
+        <div id="bankAccountDisplay" style="display: none;">
+          <div class="bank-card-active">
+            <div class="bank-info">
+              <h5 id="activeBankName">BANCO BAI</h5>
+              <p id="activeBankOwner">Nome do Titular</p>
+              <p id="activeBankIban">AO06 0000 ... 0000</p>
+            </div>
+            <button class="edit-bank-btn" onclick="openBankModal()">Alterar</button>
+          </div>
+        </div>
+        <button class="add-account-btn" id="addAccountBtn" onclick="openBankModal()">
+          <span class="plus-icon">+</span>
+          Adicionar Nova Conta
+        </button>
+      </div>
+
+      <div class="withdraw-section">
+        <h4 class="section-number-title">2. VALOR (MIN. 500 KZ)</h4>
+        <div class="alert-box">
+          <div class="alert-icon">i</div>
+          <p>Aviso: Os saques possuem uma taxa/desconto de 10% sobre o valor solicitado.</p>
+        </div>
+        <div class="withdraw-input-group">
+          <input type="number" id="withdrawAmountInput" placeholder="0" min="500">
+          <span class="input-suffix">Kz</span>
+        </div>
+      </div>
+
+      <div class="withdraw-section">
+        <h4 class="section-number-title">3. SENHA DE SEGURANÇA (6 DÍGITOS)</h4>
+        <div class="pin-input-group">
+          <input type="password" maxlength="1" class="pin-field" data-index="0">
+          <input type="password" maxlength="1" class="pin-field" data-index="1">
+          <input type="password" maxlength="1" class="pin-field" data-index="2">
+          <input type="password" maxlength="1" class="pin-field" data-index="3">
+          <input type="password" maxlength="1" class="pin-field" data-index="4">
+          <input type="password" maxlength="1" class="pin-field" data-index="5">
+        </div>
+      </div>
+
+      <button class="confirm-btn" onclick="processWithdraw()">
+        Confirmar Levantamento
+      </button>
+
+      <div class="recent-movements">
+        <p class="section-label">HISTÓRICO DE MOVIMENTOS</p>
+        <div class="empty-state">
+          Ainda não efetuou levantamentos
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANK ACCOUNT MODAL -->
+  <div class="modal-overlay" id="bankModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Adicionar Conta Bancária</h3>
+        <button class="close-modal" onclick="closeBankModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Banco</label>
+          <select id="bankName">
+            <option value="">Escolha o seu banco...</option>
+            <option value="BAI">BAI - Banco Angolano de Investimentos</option>
+            <option value="BFA">BFA - Banco de Fomento Angola</option>
+            <option value="BIC">BIC - Banco BIC</option>
+            <option value="SOL">Banco SOL</option>
+            <option value="BPC">BPC - Banco de Poupança e Crédito</option>
+            <option value="ATL">Banco Atlântico</option>
+            <option value="KEV">Banco Kwanza Invest</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nome do Titular</label>
+          <input type="text" id="bankOwner" placeholder="Nome Completo">
+        </div>
+        <div class="form-group">
+          <label>IBAN</label>
+          <input type="text" id="bankIban" placeholder="AO06 0000 0000 0000 0000 0000 0">
+        </div>
+        <button class="confirm-btn" style="margin-top: 10px; margin-bottom: 10px;" onclick="saveBankAccount()">Vincular Conta</button>
+        <button class="cancel-link-btn" onclick="closeBankModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODALS -->
+  <div class="modal-overlay" id="investModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Investimento</h3>
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="modalSubtitle" style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">Detalhes do plano de investimento.</p>
+        
+        <div class="modal-info-grid">
+          <div class="modal-info-item">
+            <div class="modal-info-label">Preço</div>
+            <div class="modal-info-value" id="modalPrice">AOA 0</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-label">Rendimento Diário</div>
+            <div class="modal-info-value" id="modalDailyReturn" style="color: var(--success);">AOA 0</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-label">Rendimento Total</div>
+            <div class="modal-info-value" id="modalTotalReturn">AOA 0</div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-label">Duração</div>
+            <div class="modal-info-value" id="modalDuration">0 dias</div>
+          </div>
+        </div>
+
+        <button class="modal-btn" id="investBtn">Investir Agora</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="infoModalTitle">Informação</h3>
+        <button class="close-modal" onclick="closeInfoModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="infoModalBody">
+        <!-- Content via JS -->
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Mensagem</div>
+
+</div>
+
+<script src="app.js?v=2"></script>
+</body>
+</html>

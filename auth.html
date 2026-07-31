@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MoneyPro - Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .auth-container {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--bg-dark);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .auth-logo {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 24px;
+      color: #fff;
+      margin: 0 auto 15px;
+    }
+    .auth-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .auth-title span { color: var(--primary); }
+    .auth-form-group { margin-bottom: 20px; }
+    .auth-form-group label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .auth-input {
+      width: 100%;
+      padding: 14px;
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus { border-color: var(--primary); }
+    .auth-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--gradient-primary);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .auth-switch {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .auth-switch span {
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #registerForm { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">M</div>
+        <div class="auth-title">Money<span>Pro</span></div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="auth-form-group">
+          <label>Número de Telefone</label>
+          <input type="text" id="loginPhone" class="auth-input" placeholder="Ex: 923000000" required>
+        </div>
+        <div class="auth-form-group">
+          <label>Senha</label>
+          <input type="password" id="loginPass" class="auth-input" placeholder="Sua senha" required>
+        </div>
+        <button type="submit" class="auth-btn">Entrar</button>
+        <div class="auth-switch">Não tem conta? <span onclick="toggleAuth()">Registe-se</span></div>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="auth-form-group">
+          <label>Número de Telefone</label>
+          <input type="text" id="regPhone" class="auth-input" placeholder="Ex: 923000000" required>
+        </div>
+        <div class="auth-form-group">
+          <label>Senha</label>
+          <input type="password" id="regPass" class="auth-input" placeholder="Crie uma senha" required>
+        </div>
+        <div class="auth-form-group">
+          <label>Confirmar Senha</label>
+          <input type="password" id="regPassConfirm" class="auth-input" placeholder="Confirme a senha" required>
+        </div>
+        <button type="submit" class="auth-btn">Criar Conta</button>
+        <div class="auth-switch">Já tem conta? <span onclick="toggleAuth()">Faça Login</span></div>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="authToast">Mensagem</div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>
